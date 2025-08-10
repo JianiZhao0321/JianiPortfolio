@@ -27,37 +27,25 @@ const projects = [
     tech: "R, Stata, Causal Inference, Mixed Methods",
     shortDescription:
       "Led a mixed-methods impact evaluation of a UN peacebuilding intervention in Darfur, analyzing 3,500+ survey responses to measure effects on education, disputes, and governance.",
-    bullets: [
-      <>
-        Designed and executed a mixed-methods impact evaluation of a UN
-        PBF-funded peacebuilding intervention in East Darfur, using{" "}
-        <span className="font-semibold">difference-in-differences</span> and{" "}
-        <span className="font-semibold">ANCOVA</span> with clustered standard
-        errors.
-      </>,
-      <>
-        Processed and analyzed household survey data from 3,538 respondents
-        across 20 villages, leveraging{" "}
-        <span className="font-semibold">pseudo-panel cohorts</span>,{" "}
-        <span className="font-semibold">gender-disaggregated models</span>, and{" "}
-        <span className="font-semibold">Benjamini–Hochberg correction</span> to
-        ensure robustness.
-      </>,
-      <>
-        Estimated an <span className="font-semibold">11pp increase</span> in
-        school enrollment, a decline in land disputes (12% → 5%), and improved
-        satisfaction with sanitation and governance services.
-      </>,
-      <>
-        Applied <span className="font-semibold">causal forest models</span> to
-        uncover subgroup-specific effects by gender and household
-        characteristics; contextualized findings with qualitative interviews.
-      </>,
-    ],
+  },
+  {
+    title: "Georgetown ESS 2023 & 2025 Data Analysis",
+    tech: "R, Data Cleaning, Visualization, Survey Analysis",
+    shortDescription:
+      "Built a reproducible R pipeline to compare 2023 and 2025 Georgetown Enrolled Student Survey data, analyzing shifts in engagement, services, and wellbeing, and presenting trends with color-coded tables.",
+  },
+  {
+    title: "House Price Prediction Model",
+    linkLabel: "GitHub",
+    linkHref: "https://github.com/JianiZhao0321/house_price_prediction", // <- replace with actual link
+    tech: "Python, Scikit-learn, Pandas, Machine Learning",
+    shortDescription:
+      "Developed a regression-based machine learning model to predict housing prices using historical sales data, optimizing feature selection and model tuning to improve forecast accuracy.",
   },
 ];
 
 function App() {
+  console.log("App component rendered");
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -443,28 +431,31 @@ function App() {
                 {/* Header row */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-2">
                   <h3 className="text-2xl font-extrabold text-gray-900">
-                    {p.title} <span className="text-gray-400">|</span>{" "}
-                    <a
-                      href={p.linkHref}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 underline decoration-pink-400/60 underline-offset-4"
-                    >
-                      <Github className="w-5 h-5" />
-                      {p.linkLabel}
-                    </a>
+                    {p.title}
+                    {p.linkHref && p.linkLabel && (
+                      <>
+                        <span className="text-gray-400"> | </span>
+                        <a
+                          href={p.linkHref}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-gray-700 hover:text-gray-900 underline decoration-pink-400/60 underline-offset-4"
+                        >
+                          <Github className="w-5 h-5" />
+                          {p.linkLabel}
+                        </a>
+                      </>
+                    )}
                   </h3>
                 </div>
 
                 {/* Tech line */}
                 <p className="italic text-lg text-gray-700 mb-4">{p.tech}</p>
 
-                {/* Bullets */}
-                <ul className="list-disc pl-6 space-y-3 text-gray-800 leading-relaxed">
-                  {p.bullets.map((b, i) => (
-                    <li key={i}>{b}</li>
-                  ))}
-                </ul>
+                {/* Short description */}
+                <p className="text-gray-700 leading-relaxed">
+                  {p.shortDescription}
+                </p>
               </motion.article>
             ))}
           </div>
